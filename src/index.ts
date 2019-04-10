@@ -1,1 +1,1 @@
-export { noop } from './noop';
+export { install } from './patchHooks';
