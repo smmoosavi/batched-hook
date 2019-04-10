@@ -1,0 +1,74 @@
+{
+  "name": "batched-hook",
+  "version": "0.1.0-alpha-1",
+  "description": "Batched set state and dispatch for react hooks",
+  "main": "lib/batched-hook.js",
+  "module": "es/batched-hook.js",
+  "typings": "./index.d.ts",
+  "repository": "https://github.com/smmoosavi/batched-hook",
+  "author": "Seyyed Morteza Moosavi <se.mo.moosavi@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "hook",
+    "batch"
+  ],
+  "files": [
+    "dist",
+    "lib",
+    "es",
+    "src",
+    "test"
+  ],
+  "scripts": {
+    "clean": "rimraf lib dist es coverage",
+    "format": "prettier --write '{src,test}/**/*.{md,ts,tsx,json}'",
+    "format:check": "prettier --list-different '{src,test}/**/*.{md,ts,tsx,json}'",
+    "lint": "tslint -c tslint.json '{src,test}/**/*.{ts,tsx}'",
+    "test": "cross-env BABEL_ENV=commonjs jest",
+    "build:commonjs": "cross-env NODE_ENV=cjs rollup -c -o lib/batched-hook.js",
+    "build:es": "cross-env BABEL_ENV=es NODE_ENV=es rollup -c -o es/batched-hook.js",
+    "build:umd": "cross-env BABEL_ENV=es NODE_ENV=development rollup -c -o dist/batched-hook.js",
+    "build:umd:min": "cross-env BABEL_ENV=es NODE_ENV=production rollup -c -o dist/batched-hook.min.js",
+    "build": "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
+    "prepare": "npm run clean && npm run format:check && npm run lint && tsc && npm test && npm run build"
+  },
+  "rollupName": "batchedHook",
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-typescript": "^7.3.3",
+    "@types/jest": "^24.0.11",
+    "@types/react": "^16.8.13",
+    "@types/react-dom": "^16.8.3",
+    "babel-jest": "^24.7.1",
+    "cross-env": "^5.2.0",
+    "husky": "^1.3.1",
+    "jest": "^24.7.1",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.16.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "rimraf": "^2.6.3",
+    "rollup": "^1.9.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-node-resolve": "^4.2.1",
+    "rollup-plugin-replace": "^2.1.1",
+    "rollup-plugin-terser": "^4.0.4",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.15.0",
+    "typescript": "^3.4.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "{src,test}/**/*.{md,ts,tsx,json}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
