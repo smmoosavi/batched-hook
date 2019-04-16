@@ -1,6 +1,6 @@
 {
   "name": "batched-hook",
-  "version": "0.1.0-alpha-1",
+  "version": "0.1.0",
   "description": "Batched set state and dispatch for react hooks",
   "main": "lib/batched-hook.js",
   "module": "es/batched-hook.js",
