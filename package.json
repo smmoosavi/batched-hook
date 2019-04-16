@@ -22,8 +22,8 @@
   ],
   "scripts": {
     "clean": "rimraf lib dist es coverage",
-    "format": "prettier --write '{src,test}/**/*.{md,ts,tsx,json}'",
-    "format:check": "prettier --list-different '{src,test}/**/*.{md,ts,tsx,json}'",
+    "format": "prettier --write '{src,test}/**/*.{md,ts,tsx,json}' README.md",
+    "format:check": "prettier --list-different '{src,test}/**/*.{md,ts,tsx,json}' README.md",
     "lint": "tslint -c tslint.json '{src,test}/**/*.{ts,tsx}'",
     "test": "cross-env BABEL_ENV=commonjs jest",
     "build:commonjs": "cross-env NODE_ENV=cjs rollup -c -o lib/batched-hook.js",
@@ -67,6 +67,10 @@
   },
   "lint-staged": {
     "{src,test}/**/*.{md,ts,tsx,json}": [
+      "prettier --write",
+      "git add"
+    ],
+    "README.md": [
       "prettier --write",
       "git add"
     ]

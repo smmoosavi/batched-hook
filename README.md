@@ -71,6 +71,7 @@ with `batched-hook` you can batch calls to `dispatch` of `useReducer` and setter
 ```
 render1 0 0
 effect  0 0
+// click
 render2 1 1
 effect  1 1
 ```
